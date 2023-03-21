@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+main(){
+
+    float altura, largura, area, latas; 
+    
+	printf("Informe a altura da sua parede: \n");
+    scanf("%f",&altura);
+   
+    printf("Informe a largura da sua parede: \n");
+    scanf("%f",&largura);
+   
+    area = (altura*largura);
+    
+	printf("A area total da parede e: %2.f\n",area);
+    latas = (area/6.66);
+   
+    printf("Voce ira consumir %2.f latas para pintar sua parede: ",latas);
+
+	return 0;
+}
