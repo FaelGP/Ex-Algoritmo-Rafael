@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+main(){
+    float carrosvendas, totalvendas , salariofixo , salariofinal ;
+    
+	printf("Quantos carros o vendedor vendeu:\n");
+    scanf("%f",&carrosvendas);
+    
+	printf("Informe o valor total das vendas:\n");
+    scanf("%f",&totalvendas);
+    
+	printf("Informe o valor fixo do salario do funcionario:\n");
+    scanf("%f",&salariofixo);
+    
+	salariofinal=salariofixo+(totalvendas*5/100);
+    
+	printf("O salario total e %2.f\n",salariofinal);
+
+	return 0;
+}
