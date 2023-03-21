@@ -1,0 +1,20 @@
+int main() {
+
+	float b, h, a;
+	
+	
+	printf("Informe o valor da base e da altura do retangulo:\n");
+	
+	printf("Base = ");
+	scanf("%f",&b);
+	
+	printf("Altura = ");
+	scanf("%f",&h);
+	
+	a = b * h;
+	
+	printf("Area: %.2f\n", a);
+	
+	
+	return 0;
+}
