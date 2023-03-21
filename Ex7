@@ -1,0 +1,19 @@
+#include<stdio.h>
+
+main(){
+
+    float custofabricante, custodistribuidor , custoimposto , custoconsumidor ;
+    
+	printf("Informe o valor da fabricacao:");
+    scanf("%f",&custofabricante);
+    
+	custodistribuidor = (custofabricante*0.28)+custofabricante;
+    
+	custoimposto = (custofabricante*0.45)+custofabricante;
+    
+	custoconsumidor = custodistribuidor +custofabricante;
+    
+	printf("O carro custa %2.f:",custoimposto);
+
+return 0;
+}
