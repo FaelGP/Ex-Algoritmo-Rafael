@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+	
+	int MP,N1,N2,N3;
+	
+	printf("Informe a primeira nota:\n");
+	scanf("%i",&N1);
+	
+	printf("Informe a segunda nota:\n");
+	scanf("%i",&N2);
+	
+	printf("Informe a terceira nota:\n");
+	scanf("%i",&N3);
+	
+	MP=((N1*2)+(N2*3)+(N3*5))/(2+3+5);
+	
+	printf(" A media ponderada e: %i", &MP);
+	
+	return 0;
+}
