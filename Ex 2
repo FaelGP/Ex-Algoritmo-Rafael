@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-void main () {
+main () {
 
     float Pi=3.14, area, r;
 
