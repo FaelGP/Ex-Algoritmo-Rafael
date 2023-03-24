@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    float num, quad, raiz;
+
+    printf("Informe um número: ");
+    scanf("%f", &num);
+
+    if(num > 0){
+        quad = num * num;
+        raiz = sqrt(num);
+        printf("O numero ao quadrado e: %f\n A raiz quadrada do número e: %f\n", quad, raiz);
+    }else{
+        printf("O numero informado nao e positivo.\n");
+    }
+    return 0;
