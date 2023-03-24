@@ -1,0 +1,62 @@
+int main(){
+
+    int A, B, C, D, E, F, G, H, I, J, K, L;
+    double valor;
+    
+    printf("Informe um valor:");
+    scanf("%lf", &valor);
+
+    A = valor/100;
+    valor = valor - (A100);
+
+    B = valor/50;
+    valor = valor - (B50);
+
+    C = valor/20;
+    valor = valor - (C20);
+
+    D = valor/10;
+    valor = valor - (D10);
+
+    E = valor/5;
+    valor = valor - (E5);
+
+    F = valor/2;
+    valor = valor - (F2);
+
+    G = valor/1;
+    valor = valor - (G1);
+
+    H = valor/0.50;
+    valor = valor - (H0.50);
+
+    I = valor/0.25;
+    valor = valor - (I0.25);
+
+    J = valor/0.10;
+    valor = valor - (J0.10);
+
+    K = valor/0.05;
+    valor = valor - (K0.05);
+
+    L = valor/0.01;
+    valor = valor - (L0.01);
+
+    printf("NOTAS:\n");
+    printf("%d nota(s) de R$ 100.00\n", A);
+    printf("%d nota(s) de R$ 50.00\n", B);
+    printf("%d nota(s) de R$ 20.00\n", C);
+    printf("%d nota(s) de R$ 10.00\n", D);
+    printf("%d nota(s) de R$ 5.00\n", E);
+    printf("%d nota(s) de R$ 2.00\n", F);
+
+    printf("MOEDAS:\n");
+    printf("%d moeda(s) de R$ 1.00\n", G);
+    printf("%d moeda(s) de R$ 0.50\n", H);
+    printf("%d moeda(s) de R$ 0.25\n", I);
+    printf("%d moeda(s) de R$ 0.10\n", J);
+    printf("%d moeda(s) de R$ 0.05\n", K);
+    printf("%d moeda(s) de R$ 0.01\n", L);
+
+return 0;
+}
