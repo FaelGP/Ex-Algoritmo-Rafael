@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+float calculamedia(float n1, float n2, float n3) {
+    float media = (n1 + n2 + n3) / 3.0;
+    return media;
+}
+int main() {
+    int numestudantes;
+    printf("Informe o numero de estudantes: ");
+    scanf("%d", &numestudantes);
+
+    for (int i = 1; i <= numestudantes; i++) {
+        printf("Informe as notas do estudante %d: ", i);
+        float n1, n2, n3;
+        scanf("%f %f %f", &n1, &n2, &n3);
+
+        float media = calculamedia(n1, n2, n3);
+
+        printf("A media do estudante %d e %.2f.\n", i, media);
+    }
+    return 0;
+}
