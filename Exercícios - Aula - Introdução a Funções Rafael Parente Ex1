@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int maximo(int a, int b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+int main() {
+    int num1, num2;
+    printf("Informe dois numeros: ");
+    scanf("%d %d", &num1, &num2);
+    int maior = maximo(num1, num2);
+    printf("O maior numero e %d.\n", maior);
+    return 0;
+}
