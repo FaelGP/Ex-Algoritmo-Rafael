@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int imprimir_opcoes_pagamento() {
+    int opcao;
+
+    printf("Opçoes de pagamento:\n");
+    printf("1) A vista com 10%% de desconto\n");
+    printf("2) Em duas vezes (preço da etiqueta)\n");
+    printf("3) De 3 ate 10 vezes com 3%% de juros ao mes (somente para compras acima de R$ 100,00)\n");
+    printf("Informe a opçao desejada: ");
+    scanf("%d", &opcao);
+
+    return opcao;
+}
+
+void opcao_a_vista(float total_gasto) {
+    float total_com_desconto = total_gasto * 0.9;
+    printf("O valor total com desconto e: R$ %.2f\n", total_com_desconto);
+}
+
+void opcao_duas_vezes(float total_gasto) {
+    float valor_prestacao = total_gasto / 2.0;
+    printf("O valor das prestações e: R$ %.2f\n", valor_prestacao);
+}
+
+void opcao_tres_a_dez_vezes(float total_gasto) {
+    if (total_gasto > 100.0) {
+        int num_prestacoes;
+        float valor_prestacao;
+
+        printf("Informe o numero de prestaçoes (entre 3 e 10): ");
+        scanf("%d", &num_prestacoes);
+
+        if (num_prestacoes < 3 || num_prestacoes > 10) {
+            printf("Numero de prestaçoes invalido.\n");
+            return;
+        }
+
+        valor_prestacao = total_gasto * pow(1.03, num_prestacoes) / num_prestacoes;
+        printf("O valor das prestaçoes e: R$ %.2f\n", valor_prestacao);
+    } else {
+        printf("Essa opçao de pagamento so e valida para compras acima de R$ 100,00.\n");
+    }
+}
+
+int main() {
+    float total_gasto;
+    int opcao;
+
+    printf("Informe o total gasto pelo cliente: ");
+    scanf("%f", &total_gasto);
+
+    opcao = imprimir_opcoes_pagamento();
+
+    switch (opcao) {
+        case 1:
+            opcao_a_vista(total_gasto);
+            break;
+        case 2:
+            opcao_duas_vezes(total_gasto);
+            break;
+        case 3:
+            opcao_tres_a_dez_vezes(total_gasto);
+            break;
+        default:
+            printf("Opçao invalida.\n");
+            break;
+    }
+    return 0;
+}
