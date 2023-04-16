@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+float inflacionar_preco(float preco) {
+    if(preco < 100) {
+        preco *= 1.1;
+    } else {
+        preco *= 1.2;
+    }
+    return preco;
+}
+int main() {
+    float preco;
+
+    printf("Informe o preco do produto: ");
+    scanf("%f", &preco);
+
+    preco = inflacionar_preco(preco);
+
+    printf("O novo preco do produto e: %.2f\n", preco);
+
+    return 0;
+}
