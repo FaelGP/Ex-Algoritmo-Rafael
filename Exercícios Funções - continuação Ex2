@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+void print_ascii_table() {
+    printf("Decimal\tHexadecimal\tCaracter\n");
+    for(int i = 0; i <= 127; i++) {
+        printf("%d\t%x\t%c\n", i, i, i);
+    }
+}
+int main() {
+    print_ascii_table();
+    return 0;
+}
