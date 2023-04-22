@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    int num, soma = 0;
+    float media;
+    for (int i = 1; i <= 10; i++) {
+        printf("Informe o do numero: ", i);
+        scanf("%d", &num);
+        soma += num;
+    }
+    
+    media = (float) soma / 10;
+    
+    printf("A mdeia dos 10 numeros informados e: %.2f\n", media);
+    
+    return 0;
+}
