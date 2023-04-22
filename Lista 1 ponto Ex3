@@ -1,0 +1,17 @@
+#include <stdio.h>
+#define PI 3.14159
+
+int main() {
+    float raio, area, volume;
+
+    printf("Informe o valor do raio da esfera e: ");
+    scanf("%f", &raio);
+
+    area = 4 * PI * raio * raio;
+    printf("Area da superficie e: %.2f\n", area);
+
+    volume = (4.0/3) * PI * raio * raio * raio;
+    printf("Volume da esfera e: %.2f\n", volume);
+
+    return 0;
+}
