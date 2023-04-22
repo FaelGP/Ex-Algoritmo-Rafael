@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+    int numero, maior, menor;
+    int primeiro_numero = 1;
+
+    while (1) {
+        printf("Informe um numero: ");
+        scanf("%d", &numero);
+
+        if (numero < 0) {
+            break;
+        }
+
+        if (primeiro_numero) {
+            maior = menor = numero;
+            primeiro_numero = 0;
+        } else {
+            if (numero > maior) {
+                maior = numero;
+            }
+            if (numero < menor) {
+                menor = numero;
+            }
+        }
+    }
+
+    if (primeiro_numero) {
+        printf("Nenhum numero foi informado\n");
+    } else {
+        printf("O maior numero informado foi: %d\n", maior);
+        printf("O menor numero informado foi: %d\n", menor);
+    }
+
+    return 0;
+}
