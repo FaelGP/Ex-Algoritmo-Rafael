@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<math.h>
+
+int main(){
+  int vetordados[10];
+  int vetorres[10];
+  
+  for(int indice = 0; indice <10: indice++){
+    printf("Informe os valores: ");
+    scanf("%d", &vetordados[indice]);
+    }
+    for(int indice = 0; indice <10: indice++){
+      vetorres[indice] = vetordados[indice] * vetordados[indice];
+      fflush(stdin);
+      printf("%d\n", vetorres[indice]);
+      }
+    }
