@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+  float vetor[10];
+  int i, qtdNegativos = 0;
+  float somaPositivos = 0;
+
+  for (i = 0; i < 10; i++) {
+    printf("Informe o valor para o elemento %d do vetor: ", i);
+    scanf("%f", &vetor[i]);
+  }
+  for (i = 0; i < 10; i++) {
+    if (vetor[i] < 0) {
+      qtdNegativos++;
+    } else {
+      somaPositivos += vetor[i];
+    }
+  }
+  printf("Quantidade de numeros negativos: %d\n", qtdNegativos);
+  printf("Soma dos numeros positivos: %.2f\n", somaPositivos);
+}
