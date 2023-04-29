@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+  int valores[5];
+  int i, posMaior, posMenor;
+  int maior, menor;
+
+  for (i = 0; i < 5; i++) {
+    printf("Informe o valor %d: ", i + 1);
+    scanf("%d", &valores[i]);
+  }
+  maior = valores[0];
+  menor = valores[0];
+  posMaior = 0;
+  posMenor = 0;
+
+  for (i = 1; i < 5; i++) {
+    if (valores[i] > maior) {
+      maior = valores[i];
+      posMaior = i;
+    }
+    if (valores[i] < menor) {
+      menor = valores[i];
+      posMenor = i;
+    }
+  }
+  
+  printf("Maior valor: %d (posição %d)\n", maior, posMaior);
+  printf("Menor valor: %d (posição %d)\n", menor, posMenor);
+}
