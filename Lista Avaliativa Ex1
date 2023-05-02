@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+  int n, i, melhorvolta, tempo;
+  float mediatempos, somatempos = 0;
+  
+  printf("Informe o numero de voltas:\n ");
+  scanf("%d", &n);
+  
+  int tempos[n];
+  
+  for (i = 0; i < n; i++) {
+    printf("Informe o tempo da volta %d: ", i + 1);
+    scanf("%d", &tempos[i]);
+    
+    if (i == 0 || tempos[i] < tempos[melhorvolta]) {
+      melhorvolta = i;
+    }
+    
+    somatempos += tempos[i];
+  }
+  
+  mediatempos = somatempos / n;
+  
+  printf("Melhor tempo: %d\n", tempos[melhorvolta]);
+  printf("Volta do melhor tempo: %d\n", melhorvolta + 1);
+  printf("Tempo medio das voltas: %.2f\n", mediatempos);
+  
+  return 0;
+}
