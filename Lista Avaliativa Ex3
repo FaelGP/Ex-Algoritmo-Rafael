@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+int main() {
+    int num_times, num_jogadores;
+    float idade, peso, soma_idades_time, media_idades_time, soma_pesos_time, media_pesos_time, jogadores_menores, jogadores_pesados;
+    
+    do {
+        printf("Informe o numero de times inscritos (entre 3 e 9): ");
+        scanf("%d", &num_times);
+    } while (num_times < 3 || num_times > 9);
+    
+    for (int i = 1; i <= num_times; i++) {
+        soma_idades_time = 0;
+        soma_pesos_time = 0;
+        
+        do {
+            printf("\nTime %d - Informe o numero de jogadores inscritos (entre 6 e 11): ", i);
+            scanf("%d", &num_jogadores);
+        } while (num_jogadores < 6 || num_jogadores > 11);
+        
+        for (int j = 1; j <= num_jogadores; j++) {
+            printf("Informe a idade do jogador %d do time %d: ", j, i);
+            scanf("%f", &idade);
+            soma_idades_time += idade;
+            
+            printf("Informe o peso do jogador %d do time %d: ", j, i);
+            scanf("%f", &peso);
+            if (idade > 25) {
+                soma_pesos_time += peso;
+                if (peso > 80) {
+                    jogadores_pesados++;
+                }
+            }
+            
+            if (idade < 18) {
+                jogadores_menores++;
+            }
+        }
+        
+        media_idades_time = soma_idades_time / num_jogadores;
+        if (num_jogadores == 6) {
+            media_pesos_time = 0;
+        } else {
+            media_pesos_time = soma_pesos_time / (num_jogadores - 5);
+        }
+        
+        printf("\nMedia de idade do time %d: %.2f anos\n", i, media_idades_time);
+        printf("Media de peso dos jogadores acima de 25 anos do time %d: %.2f kg\n", i, media_pesos_time);
+    }
+    
+    float porcentagem_jogadores_pesados = (jogadores_pesados / ((num_times * num_jogadores) * 1.0)) * 100;
+    
+    printf("\nQuantidade de jogadores menores de idade: %.0f\n", jogadores_menores);
+    printf("Quantidade de jogadores com mais de 80kg: %.0f\n", jogadores_pesados);
+    printf("Porcentagem de jogadores com mais de 80kg: %.2f%%\n", porcentagem_jogadores_pesados);
+    
+    return 0;
+}
