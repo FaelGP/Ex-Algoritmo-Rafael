@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+char validasexo() {
+    char sexo;
+    do {
+        printf("Informe o sexo do assalariado (M/F): ");
+        scanf(" %c", &sexo);
+        sexo = toupper(sexo);
+    } while (sexo != 'M' && sexo != 'F');
+    return sexo;
+}
+
+float validasalario() {
+    float salario;
+    do {
+        printf("Informe o valor do salario do assalariado: ");
+        scanf("%f", &salario);
+        if (salario <= 1) {
+            printf("Valor invalido. O salario deve ser maior que R$ 1,00.\n");
+        }
+    } while (salario <= 1);
+    return salario;
+}
+
+char* classificasalario(float salario) {
+    if (salario > 1400) {
+        return "Acima do salario minimo";
+    } else if (salario == 1400) {
+        return "Igual ao salario minimo";
+    } else {
+        return "Abaixo do salario minimo";
+    }
+}
+
+void mostraclassifica(char sexo, float salario) {
+    printf("Sexo: %s\n", sexo == 'M' ? "Masculino" : "Feminino");
+    printf("Salario: R$ %.2f\n", salario);
+    printf("Classificacao em relacao ao salario minimo: %s\n\n", classificasalario(salario));
+}
+int main() {
+    int numassalariados, abaixosalariominimo = 0, acimasalariominimo = 0;
+    printf("Informe o numero de assalariados a serem pesquisados: ");
+    scanf("%d", &numassalariados);
+    for (int i = 1; i <= numassalariados; i++) {
+        printf("Assalariado %d:\n", i);
+        char sexo = validasexo();
+        float salario = validasalario();
+        mostraclassifica(sexo, salario);
+        if (salario < 1400) {
+            abaixosalariominimo++;
+        } else if (salario > 1400) {
+            acimasalariominimo++;
+        }
+    }
+    printf("Quantidade de assalariados com salario abaixo do salario minimo: %d\n", abaixosalariominimo);
+    printf("Quantidade de assalariados com salario acima do salario minimo: %d\n", acimasalariominimo);
+    return 0;
+}
