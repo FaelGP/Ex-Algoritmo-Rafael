@@ -1,0 +1,28 @@
+#include <stdio.h>
+#define TAM 10 // tamanho dos vetores
+
+int main() {
+    int vet1[TAM], vet2[TAM], vet3[TAM*2];
+    int i, j;
+    
+    printf("Digite os valores do primeiro vetor:\n");
+    for (i = 0; i < TAM; i++) {
+        scanf("%d", &vet1[i]);
+    }
+    
+    printf("Digite os valores do segundo vetor:\n");
+    for (i = 0; i < TAM; i++) {
+        scanf("%d", &vet2[i]);
+    }
+  
+    for (i = 0, j = 0; i < TAM; i++, j+=2) {
+        vet3[j] = vet1[i];
+        vet3[j+1] = vet2[i]; 
+    }
+    
+    printf("Terceiro vetor:\n");
+    for (i = 0; i < TAM*2; i++) {
+        printf("%d ", vet3[i]);
+    }
+    return 0;
+}
