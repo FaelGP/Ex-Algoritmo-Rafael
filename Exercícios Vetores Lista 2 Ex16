@@ -1,0 +1,36 @@
+#include<stdio.h>
+#define TAM 5
+
+int main(){
+    int vetor[TAM];
+    int cod, i;
+
+    for(i = 0; i < TAM; i++){
+        printf("Digite os numeros");
+        scanf("%d\n", &vetor[i]);
+    }
+    
+   fflush(stdin);
+   printf("Digite o codigo:");
+   scanf("%d", &cod);
+
+   switch(cod){
+        case 0:
+            exit(0);
+            break;
+        case 1: 
+            printf("Valores crescente: ");
+            for(i = 0; i < TAM; i++){
+                printf("%d\n", vetor[i]);
+            }
+            break;
+        case 2:
+            printf("Valores decrescente: ");
+            for(i = TAM-1; i >-1; i--){
+                printf("%d\n", vetor[i]);
+            }
+            break;
+        default:
+            printf("Codigo invalido");
+   }
+}
