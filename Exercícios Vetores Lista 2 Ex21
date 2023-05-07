@@ -1,0 +1,21 @@
+#include<stdio.h>
+#define TAM 3
+
+int main(){
+    int vetorA[TAM];
+    int vetorB[TAM];
+    int vetorC[TAM];
+    
+    for(int i = 0; i < TAM; i++){
+        printf("Preecha o vetor A");
+        scanf("%d", &vetorA[i]);
+    }
+    for(int i = 0; i < TAM; i++){
+        printf("Preecha o vetor B");
+        scanf("%d", &vetorB[i]);
+    }
+    for(int i = 0; i < TAM; i++){
+        vetorC[i] = vetorA[i] - vetorB[i];
+        printf("\nValor de C: %d", vetorC[i]);
+    }
+}
