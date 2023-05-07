@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int vet[100];
+    int count = 0, i = 1;
+
+    while (count < 100) {
+        if (i % 7 != 0 && i % 10 != 7) {
+            vet[count] = i;
+            count++;
+        }
+        i++;
+    }
+
+    printf("Vetor: ");
+    for (int j = 0; j < 100; j++) {
+        printf("%d ", vet[j]);
+    }
+    printf("\n");
+
+    return 0;
+}
