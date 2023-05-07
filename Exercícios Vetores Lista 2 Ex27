@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    int vet[10];
+    int i, j, count, isPrime;
+
+    for (i = 0; i < 10; i++) {
+        printf("Digite o %dº número: ", i+1);
+        scanf("%d", &vet[i]);
+    }
+    printf("Números primos no vetor:\n");
+    for (i = 0; i < 10; i++) {
+        isPrime = 1; // assume que o número é primo
+        for (j = 2; j < vet[i]; j++) {
+            if (vet[i] % j == 0) {
+                isPrime = 0; // o número não é primo
+                break;
+            }
+        }
+        if (isPrime == 1 && vet[i] > 1) { // o número é primo e maior que 1
+            printf("%d (posição %d)\n", vet[i], i);
+        }
+    }
+    return 0;
+}
