@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_NOME 50
+#define MAX_ALUNOS 10
+
+typedef struct {
+    char nome[MAX_NOME];
+    int matricula;
+    float media_final;
+} Aluno;
+
+int main() {
+    Aluno alunos[MAX_ALUNOS], aprovados[MAX_ALUNOS], reprovados[MAX_ALUNOS];
+    int i, j, n_aprovados = 0, n_reprovados = 0;
+    
+    for (i = 0; i < MAX_ALUNOS; i++) {
+        printf("Informe o nome do aluno %d: ", i + 1);
+        fgets(alunos[i].nome, MAX_NOME, stdin);
+        alunos[i].nome[strcspn(alunos[i].nome, "\n")] = '\0';
+
+        printf("Informe a matricula do aluno %d: ", i + 1);
+        scanf("%d", &alunos[i].matricula);
+
+        printf("Informe a media final do aluno %d: ", i + 1);
+        scanf("%f", &alunos[i].media_final);
+
+        printf("\n");
+        getchar();
+    }
+
+    for (i = 0; i < MAX_ALUNOS; i++) {
+        if (alunos[i].media_final >= 5.0) {
+            aprovados[n_aprovados] = alunos[i];
+            n_aprovados++;
+        } else {
+            reprovados[n_reprovados] = alunos[i];
+            n_reprovados++;
+        }
+    }
+
+    printf("Alunos aprovados:\n");
+    for (i = 0; i < n_aprovados; i++) {
+        printf("%s (matricula %d) - Media final: %.2f\n", aprovados[i].nome, aprovados[i].matricula, aprovados[i].media_final);
+    }
+    printf("\n");
+
+    printf("Alunos reprovados:\n");
+    for (i = 0; i < n_reprovados; i++) {
+        printf("%s (matricula %d) - Media final: %.2f\n", reprovados[i].nome, reprovados[i].matricula, reprovados[i].media_final);
+    }
+
+    return 0;
+}
