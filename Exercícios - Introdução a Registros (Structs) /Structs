@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_NOME 50
+#define MAX_ENDERECO 100
+
+typedef struct {
+    char nome[MAX_NOME];
+    int idade;
+    char endereco[MAX_ENDERECO];
+} Pessoa;
+
+int main() {
+    Pessoa pessoa;
+
+    printf("Informe o nome: ");
+    fgets(pessoa.nome, MAX_NOME, stdin);
+    pessoa.nome[strcspn(pessoa.nome, "\n")] = '\0';
+
+    printf("Informe a idade: ");
+    scanf("%d", &pessoa.idade);
+    getchar();
+
+    printf("Informe o endereco: ");
+    fgets(pessoa.endereco, MAX_ENDERECO, stdin);
+    pessoa.endereco[strcspn(pessoa.endereco, "\n")] = '\0';
+
+    printf("\nDados da pessoa:\n");
+    printf("Nome: %s\n", pessoa.nome);
+    printf("Idade: %d\n", pessoa.idade);
+    printf("Endereco: %s\n", pessoa.endereco);
+
+    return 0;
+}
