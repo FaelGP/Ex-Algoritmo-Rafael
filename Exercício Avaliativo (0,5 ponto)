@@ -1,0 +1,220 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define max_users 1000
+
+typedef struct user
+{
+char email[50]
+char nome[50]
+char fone[29]
+int idade;
+}user;
+
+int n_user = 0;
+user user_list[max_user];
+
+void incluir_usuario();
+void editar_usuario();
+void excluir_usuario();
+void buscar_usuario();
+void imprimir_usuario();
+void backup_usuario();
+void restaurar_usuario();
+
+int main()
+{
+int opcao;
+
+do
+{
+printf("Opcoes\n");
+printf("1 - Incluir usuarios");
+printf("2 - Editar usuarios");
+printf("3 - Excluir usuarios");
+printf("4 - Buscar usuarios");
+printf("5 - Imprimir usuarios");
+printf("6 - Fazer backup dos usuarios");
+printf("7 - Fazer restauracao dos dados");
+printf("8 - Sair");
+printf("Opcao");
+scanf("&d", &opcao);
+
+switch (opcao)
+{
+case 1:
+incluir_usuario();
+  break;
+case 2:
+editar_usuario();
+  break;
+case 3:
+excluir_usuario();
+  break;
+case 4:
+buscar_usuario();
+  break;
+case 5:
+imprimir_usuario();
+  break;
+case 6:
+backup_usuario();
+  break;
+case 7:
+restaurar_usuario();
+  break;
+case 8:
+break;
+
+default:
+  printf("Opcao invalida");
+  }
+  
+  }while (opcao != 0);
+  return 0;
+
+
+}
+
+void incluir_usuario()
+{
+  if (n_users >= max_users)
+  {
+  printf("Numero maximo de pessoas foi atingido");
+  return;
+
+  }
+user noco_usuario;
+
+printf("Informe o email:");
+scanf(""%s",novo_usuario.email");
+
+printf("Informe o nome:");
+scanf("%s",novo_usuario.nome");
+
+printf("Informe o telefone:");
+scanf(""%s",novo_usuario.fone");
+
+printf("Informe a idade:");
+scanf("%d",&novo_usuario.idade);
+
+user_list[n_users++] = novo_usuario;
+
+}
+
+void editar_usuario()
+{
+
+int index;
+char email[50];
+
+printf("Informe o email do usuario para editar:");
+scanf("%s", email);
+
+index = buscar_usuario(email);
+
+if (index == -1)
+{
+printf("Usuario nao encontrado");
+return;
+}
+
+printf("Informe o novo email:\n");
+scanf("%s",user_List[index].email);
+
+printf("Informe o novo nome:\n");
+scanf("%s",user_List[index].nome);
+
+printf("Informe o novo telefone:\n");
+scanf("%s",user_List[index].fone);
+
+printf("Informe a nova idade do usuario:\n");
+scanf("%d",&user_list[index].idade);
+
+
+
+}
+
+void excluir_usuario()
+{
+
+int index;
+char email[50];
+
+printf("Informe o e-mail do usuario para excluir");
+scanf("%s", email);
+
+index = buscar_usuario(email);
+
+if(index == -1)
+{
+printf("Usuario nao encontrado");
+return 0;
+}
+
+for (int i = index; i < n_users; i++)
+{
+  user_list[i] = user_list[i + 1];
+  {
+  n_user--;
+  
+  }
+
+int buscar_usuario (char *email)
+{
+for(int i = 0; i< n_user;i++)
+{
+if (strcmp(user_list[i].email, email) == 0)
+{
+return 1;
+}
+}
+return -1;
+}
+
+return -1;
+}
+
+void imprimir_usuarios()
+{
+for(int i = 0; i < n_users; i++)
+{
+printf("email: %s",user_list[i].email);
+printf("nome: %s",user_list[i].nome);
+printf("telefone: %s",user_list[i].fone);
+printf("idade: %d,user_list[i].idade");
+printf("----------------------------------");
+}
+}
+
+void backup_usuarios()
+{
+file *fp;
+
+fp = fopen("users.dat", "wb");
+
+if (fp == null)
+{
+printf("Erro ao abrir o arquivo");
+return;
+
+}
+fwrite(&n_users, sizeof(int), i, fp);
+fwrite(user_list, sizepf(user), n_users,fp);
+
+fclose(fp);
+}
+
+void restaurar_dados()
+{
+file *fp;
+
+fp = fopen("users.dat", "rb");
+
+if (fp == null)
+{
+printf("Erro ao abrir arquivo");
+return;
+}
+}
