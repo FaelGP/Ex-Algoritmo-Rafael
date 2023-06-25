@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    float notaMatematica, notaFisica, notaQuimica;
+    float media;
+
+    printf("Informe a nota de Matematica: ");
+    scanf("%f", &notaMatematica);
+
+    printf("Informe a nota de Fisica: ");
+    scanf("%f", &notaFisica);
+
+    printf("Informe a nota de Quimica: ");
+    scanf("%f", &notaQuimica);
+
+    media = (notaMatematica + notaFisica + notaQuimica) / 3.0;
+
+    FILE* arquivo = fopen("notas.txt", "w");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
+
+    fprintf(arquivo, "Nota de Matematica: %.2f\n", notaMatematica);
+    fprintf(arquivo, "Nota de Fisica: %.2f\n", notaFisica);
+    fprintf(arquivo, "Nota de Quimica: %.2f\n", notaQuimica);
+    fprintf(arquivo, "Media das notas: %.2f\n", media);
+
+    fclose(arquivo);
+
+    printf("Dados salvos no arquivo 'notas.txt'.\n");
+
+    return 0;
+}
