@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char nome[50];
+    int idade;
+    char queixa[100];
+} Anamnese;
+
+typedef struct Node {
+    Anamnese anamnese;
+    struct Node* prox;
+} Node;
+
+void cadastrarAnamnese(Node** lista) {
+    Node* novoNo = (Node*)malloc(sizeof(Node));
+
+    printf("Informe o nome: ");
+    scanf(" %[^\n]s", novoNo->anamnese.nome);
+
+    printf("*/Informe a idade: ");
+    scanf("%d", &(novoNo->anamnese.idade));
+
+    printf("Informe a queixa: ");
+    scanf(" %[^\n]s", novoNo->anamnese.queixa);
+
+    novoNo->prox = *lista;
+    *lista = novoNo;
+
+    printf("Anamnese cadastrada com sucesso!\n\n");
+}
+
+void imprimirRegistros(Node* lista) {
+    if (lista == NULL) {
+        printf("Nenhum registro de Anamnese cadastrado.\n");
+    } else {
+        printf("Registros de Anamnese cadastrados:\n");
+        while (lista != NULL) {
+            printf("Nome: %s\n", lista->anamnese.nome);
+            printf("Idade: %d\n", lista->anamnese.idade);
+            printf("Queixa: %s\n\n", lista->anamnese.queixa);
+            lista = lista->prox;
+        }
+    }
+}
+
+int main() {
+    Node* lista = NULL;
+    int opcao;
+
+    do {
+        printf("Menu:\n");
+        printf("1. Cadastrar Anamnese\n");
+        printf("2. Imprimir registros de Anamnese\n");
+        printf("0. Sair\n");
+        printf("Escolha a opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                cadastrarAnamnese(&lista);
+                break;
+            case 2:
+                imprimirRegistros(lista);
+                break;
+            case 0:
+                printf("Encerrando o programa.\n");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+                break;
+        }
+    } while (opcao != 0);
+
+    return 0;
+}
