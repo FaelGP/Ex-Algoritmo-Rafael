@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    int variavel1;
+    int variavel2;
+
+    printf("Endereco da variavel 1: %p\n", &variavel1);
+    printf("Endereco da variavel 2: %p\n", &variavel2);
+
+    if (&variavel1 > &variavel2) {
+        printf("Maior endereco: %p\n", &variavel1);
+    } else {
+        printf("Maior endereco: %p\n", &variavel2);
+    }
+    return 0;
+}
