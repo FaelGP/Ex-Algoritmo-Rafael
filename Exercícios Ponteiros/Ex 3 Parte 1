@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main() {
+    int variavel1, variavel2;
+
+    printf("Informe o valor da variavel 1: ");
+    scanf("%d", &variavel1);
+
+    printf("Informe o valor da variavel 2: ");
+    scanf("%d", &variavel2);
+
+    if (&variavel1 > &variavel2) {
+        printf("Conteudo do maior endereco: %d\n", variavel1);
+    } else {
+        printf("Conteudo do maior endereco: %d\n", variavel2);
+    }
+    return 0;
+}
