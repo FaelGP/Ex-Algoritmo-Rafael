@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Dieta {
+    char nomeComida[100];
+    float pesoPorcao;
+    int numCalorias;
+    struct Dieta* proximo;
+} Dieta;
+
+Dieta* solicitarDados() {
+    Dieta* novaComida = (Dieta*)malloc(sizeof(Dieta));
+
+    printf("Nome da comida: ");
+    scanf(" %[^\n]", novaComida->nomeComida);
+
+    printf("Peso da porcao: ");
+    scanf("%f", &novaComida->pesoPorcao);
+
+    printf("Numero de calorias: ");
+    scanf("%d", &novaComida->numCalorias);
+
+    novaComida->proximo = NULL;
+
+    return novaComida;
+}
+
+void listarComidas(Dieta* lista) {
+    Dieta* atual = lista;
+
+    if (atual == NULL) {
+        printf("Nenhuma comida foi registrada.\n");
+    } else {
+        while (atual != NULL) {
+            printf("Nome da comida: %s\n", atual->nomeComida);
+            printf("Peso da porcao: %.2f\n", atual->pesoPorcao);
+            printf("Numero de calorias: %d\n", atual->numCalorias);
+            printf("\n");
+
+            atual = atual->proximo;
+        }
+    }
+}
+
+int main() {
+    Dieta* listaComidas = NULL;
+
+    int opcao;
+
+    do {
+        printf("Selecione uma opcao:\n");
+        printf("1. Adicionar uma comida\n");
+        printf("2. Listar todas as comidas\n");
+        printf("0. Sair\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1: {
+                Dieta* novaComida = solicitarDados();
+
+                if (listaComidas == NULL) {
+                    listaComidas = novaComida;
+                } else {
+                    Dieta* atual = listaComidas;
+
+                    while (atual->proximo != NULL) {
+                        atual = atual->proximo;
+                    }
+
+                    atual->proximo = novaComida;
+                }
+
+                printf("Comida adicionada com sucesso.\n\n");
+                break;
+            }
+            case 2: {
+                listarComidas(listaComidas);
+                break;
+            }
+            case 0: {
+                printf("Saiu.\n");
+                break;
+            }
+            default: {
+                printf("Opcao invalida.\n");
+                break;
+            }
+        }
+    } while (opcao != 0);
+
+    return 0;
+}
