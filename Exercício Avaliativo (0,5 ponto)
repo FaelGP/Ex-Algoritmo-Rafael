@@ -1,220 +1,367 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <time.h>
 
-#define max_users 1000
+#define MAX_USUARIOS 1000
+#define MAX_NOME 100
+#define MAX_EMAIL 100
+#define MAX_ENDERECO 100
 
-typedef struct user
-{
-char email[50]
-char nome[50]
-char fone[29]
-int idade;
-}user;
+typedef struct {
+    int id;
+    char nome[MAX_NOME];
+    char email[MAX_EMAIL];
+    char sexo[MAX_NOME];
+    char endereco[MAX_ENDERECO];
+    double altura;
+    int vacina;
+} Usuario;
 
-int n_user = 0;
-user user_list[max_user];
+Usuario usuarios[MAX_USUARIOS];
+int numUsuarios = 0;
 
-void incluir_usuario();
-void editar_usuario();
-void excluir_usuario();
-void buscar_usuario();
-void imprimir_usuario();
-void backup_usuario();
-void restaurar_usuario();
-
-int main()
-{
-int opcao;
-
-do
-{
-printf("Opcoes\n");
-printf("1 - Incluir usuarios");
-printf("2 - Editar usuarios");
-printf("3 - Excluir usuarios");
-printf("4 - Buscar usuarios");
-printf("5 - Imprimir usuarios");
-printf("6 - Fazer backup dos usuarios");
-printf("7 - Fazer restauracao dos dados");
-printf("8 - Sair");
-printf("Opcao");
-scanf("&d", &opcao);
-
-switch (opcao)
-{
-case 1:
-incluir_usuario();
-  break;
-case 2:
-editar_usuario();
-  break;
-case 3:
-excluir_usuario();
-  break;
-case 4:
-buscar_usuario();
-  break;
-case 5:
-imprimir_usuario();
-  break;
-case 6:
-backup_usuario();
-  break;
-case 7:
-restaurar_usuario();
-  break;
-case 8:
-break;
-
-default:
-  printf("Opcao invalida");
-  }
-  
-  }while (opcao != 0);
-  return 0;
-
-
+int gerarId() {
+    srand(time(NULL));
+    return rand() % 10000 + 1;
 }
 
-void incluir_usuario()
-{
-  if (n_users >= max_users)
-  {
-  printf("Numero maximo de pessoas foi atingido");
-  return;
+bool validarEmail(char *email) {
+    int i;
+    int tamanho = strlen(email);
+    bool encontrado = false;
 
-  }
-user noco_usuario;
-
-printf("Informe o email:");
-scanf(""%s",novo_usuario.email");
-
-printf("Informe o nome:");
-scanf("%s",novo_usuario.nome");
-
-printf("Informe o telefone:");
-scanf(""%s",novo_usuario.fone");
-
-printf("Informe a idade:");
-scanf("%d",&novo_usuario.idade);
-
-user_list[n_users++] = novo_usuario;
-
+    for (i = 0; i < tamanho; i++) {
+        if (email[i] == '@') {
+            encontrado = true;
+            break;
+        }
+    }
+    return encontrado;
 }
 
-void editar_usuario()
-{
-
-int index;
-char email[50];
-
-printf("Informe o email do usuario para editar:");
-scanf("%s", email);
-
-index = buscar_usuario(email);
-
-if (index == -1)
-{
-printf("Usuario nao encontrado");
-return;
+bool validarSexo(char *sexo) {
+    if (strcmp(sexo, "feminino") == 0 || strcmp(sexo, "masculino") == 0 || strcmp(sexo, "Indiferente") == 0) {
+        return true;
+    }
+    return false;
 }
 
-printf("Informe o novo email:\n");
-scanf("%s",user_List[index].email);
-
-printf("Informe o novo nome:\n");
-scanf("%s",user_List[index].nome);
-
-printf("Informe o novo telefone:\n");
-scanf("%s",user_List[index].fone);
-
-printf("Informe a nova idade do usuario:\n");
-scanf("%d",&user_list[index].idade);
-
-
-
+bool validarAltura(double altura) {
+    if (altura >= 1.0 && altura <= 2.0) {
+        return true;
+    }
+    return false;
 }
 
-void excluir_usuario()
-{
+void adicionarUsuario() {
+    Usuario usuario;
 
-int index;
-char email[50];
+    usuario.id = gerarId();
 
-printf("Informe o e-mail do usuario para excluir");
-scanf("%s", email);
+    printf("Informe o nome completo do usuário: ");
+    scanf(" %[^\n]", usuario.nome);
 
-index = buscar_usuario(email);
+    printf("Informe o email do usuário: ");
+    scanf(" %[^\n]", usuario.email);
 
-if(index == -1)
-{
-printf("Usuario nao encontrado");
-return 0;
+    while (!validarEmail(usuario.email)) {
+        printf("Email inválido. Informe novamente: ");
+        scanf(" %[^\n]", usuario.email);
+    }
+
+    printf("Informe o sexo do usuário: ");
+    scanf(" %[^\n]", usuario.sexo);
+
+    while (!validarSexo(usuario.sexo)) {
+        printf("Sexo inválido. Informe novamente: ");
+        scanf(" %[^\n]", usuario.sexo);
+    }
+
+    printf("Informe o endereço do usuário: ");
+    scanf(" %[^\n]", usuario.endereco);
+
+    printf("Informe a altura do usuário (em metros): ");
+    scanf("%lf", &usuario.altura);
+
+    while (!validarAltura(usuario.altura)) {
+        printf("Altura inválida. Informe novamente: ");
+        scanf("%lf", &usuario.altura);
+    }
+
+    printf("O usuário foi vacinado? (1 - Sim, 0 - Não): ");
+    scanf("%d", &usuario.vacina);
+
+    usuarios[numUsuarios] = usuario;
+    numUsuarios++;
+
+    printf("Usuário adicionado com sucesso.\n");
 }
 
-for (int i = index; i < n_users; i++)
-{
-  user_list[i] = user_list[i + 1];
-  {
-  n_user--;
-  
-  }
+void editarUsuario() {
+    int id;
+    int i;
+    bool encontrado = false;
 
-int buscar_usuario (char *email)
-{
-for(int i = 0; i< n_user;i++)
-{
-if (strcmp(user_list[i].email, email) == 0)
-{
-return 1;
+    printf("Informe o ID do usuário a ser editado: ");
+    scanf("%d", &id);
+
+    for (i = 0; i < numUsuarios; i++) {
+        if (usuarios[i].id == id) {
+            Usuario usuario = usuarios[i];
+
+            printf("Usuário encontrado:\n");
+            printf("ID: %d\n", usuario.id);
+            printf("Nome: %s\n", usuario.nome);
+            printf("Email: %s\n", usuario.email);
+            printf("Sexo: %s\n", usuario.sexo);
+            printf("Endereço: %s\n", usuario.endereco);
+            printf("Altura: %.2lf\n", usuario.altura);
+            printf("Vacinado: %s\n", usuario.vacina ? "Sim" : "Não");
+
+            printf("Informe o novo nome do usuário: ");
+            scanf(" %[^\n]", usuario.nome);
+
+            printf("Informe o novo email do usuário: ");
+            scanf(" %[^\n]", usuario.email);
+
+            while (!validarEmail(usuario.email)) {
+                printf("Email inválido. Informe novamente: ");
+                scanf(" %[^\n]", usuario.email);
+            }
+
+            printf("Informe o novo sexo do usuário: ");
+            scanf(" %[^\n]", usuario.sexo);
+
+            while (!validarSexo(usuario.sexo)) {
+                printf("Sexo inválido. Informe novamente: ");
+                scanf(" %[^\n]", usuario.sexo);
+            }
+
+            printf("Informe o novo endereço do usuário: ");
+            scanf(" %[^\n]", usuario.endereco);
+
+            printf("Informe a nova altura do usuário (em metros): ");
+            scanf("%lf", &usuario.altura);
+
+            while (!validarAltura(usuario.altura)) {
+                printf("Altura inválida. Informe novamente: ");
+                scanf("%lf", &usuario.altura);
+            }
+
+            printf("O usuário foi vacinado? (1 - Sim, 0 - Não): ");
+            scanf("%d", &usuario.vacina);
+
+            usuarios[i] = usuario;
+
+            printf("Usuário editado com sucesso.\n");
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Usuário não encontrado.\n");
+    }
 }
-}
-return -1;
-}
 
-return -1;
-}
+void excluirUsuario() {
+    int id;
+    int i, j;
+    bool encontrado = false;
 
-void imprimir_usuarios()
-{
-for(int i = 0; i < n_users; i++)
-{
-printf("email: %s",user_list[i].email);
-printf("nome: %s",user_list[i].nome);
-printf("telefone: %s",user_list[i].fone);
-printf("idade: %d,user_list[i].idade");
-printf("----------------------------------");
-}
-}
+    printf("Informe o ID do usuário a ser excluído: ");
+    scanf("%d", &id);
 
-void backup_usuarios()
-{
-file *fp;
+    for (i = 0; i < numUsuarios; i++) {
+        if (usuarios[i].id == id) {
+            for (j = i; j < numUsuarios - 1; j++) {
+                usuarios[j] = usuarios[j+1];
+            }
+            numUsuarios--;
+            printf("Usuário excluído com sucesso.\n");
+            encontrado = true;
+            break;
+        }
+    }
 
-fp = fopen("users.dat", "wb");
-
-if (fp == null)
-{
-printf("Erro ao abrir o arquivo");
-return;
-
-}
-fwrite(&n_users, sizeof(int), i, fp);
-fwrite(user_list, sizepf(user), n_users,fp);
-
-fclose(fp);
+    if (!encontrado) {
+        printf("Usuário não encontrado.\n");
+    }
 }
 
-void restaurar_dados()
-{
-file *fp;
+void buscarUsuario() {
+    char email[MAX_EMAIL];
+    int i;
+    bool encontrado = false;
 
-fp = fopen("users.dat", "rb");
+    printf("Informe o email do usuário a ser buscado: ");
+    scanf(" %[^\n]", email);
 
-if (fp == null)
-{
-printf("Erro ao abrir arquivo");
-return;
+    for (i = 0; i < numUsuarios; i++) {
+        if (strcmp(usuarios[i].email, email) == 0) {
+            Usuario usuario = usuarios[i];
+
+            printf("Usuário encontrado:\n");
+            printf("ID: %d\n", usuario.id);
+            printf("Nome: %s\n", usuario.nome);
+            printf("Email: %s\n", usuario.email);
+            printf("Sexo: %s\n", usuario.sexo);
+            printf("Endereço: %s\n", usuario.endereco);
+            printf("Altura: %.2lf\n", usuario.altura);
+            printf("Vacinado: %s\n", usuario.vacina ? "Sim" : "Não");
+
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Usuário não encontrado.\n");
+    }
 }
+
+void imprimirUsuarios() {
+    int i;
+
+    if (numUsuarios == 0) {
+        printf("Nenhum usuário cadastrado.\n");
+        return;
+    }
+
+    printf("Lista de usuários cadastrados:\n");
+    for (i = 0; i < numUsuarios; i++) {
+        Usuario usuario = usuarios[i];
+
+        printf("ID: %d\n", usuario.id);
+        printf("Nome: %s\n", usuario.nome);
+        printf("Email: %s\n", usuario.email);
+        printf("Sexo: %s\n", usuario.sexo);
+        printf("Endereço: %s\n", usuario.endereco);
+        printf("Altura: %.2lf\n", usuario.altura);
+        printf("Vacinado: %s\n", usuario.vacina ? "Sim" : "Não");
+        printf("\n");
+    }
+}
+
+void fazerBackup() {
+    FILE *arquivo;
+    int i;
+
+    arquivo = fopen("backup.txt", "w");
+
+    if (arquivo == NULL) {
+        printf("Erro ao criar o arquivo de backup.\n");
+        return;
+    }
+
+    for (i = 0; i < numUsuarios; i++) {
+        Usuario usuario = usuarios[i];
+
+        fprintf(arquivo, "ID: %d\n", usuario.id);
+        fprintf(arquivo, "Nome: %s\n", usuario.nome);
+        fprintf(arquivo, "Email: %s\n", usuario.email);
+        fprintf(arquivo, "Sexo: %s\n", usuario.sexo);
+        fprintf(arquivo, "Endereço: %s\n", usuario.endereco);
+        fprintf(arquivo, "Altura: %.2lf\n", usuario.altura);
+        fprintf(arquivo, "Vacinado: %s\n", usuario.vacina ? "Sim" : "Não");
+        fprintf(arquivo, "\n");
+    }
+    fclose(arquivo);
+    printf("Backup dos usuários cadastrados realizado com sucesso.\n");
+}
+
+void restaurarBackup() {
+    FILE *arquivo;
+    char linha[MAX_NOME];
+
+    arquivo = fopen("backup.txt", "r");
+
+    if (arquivo == NULL) {
+        printf("Arquivo de backup não encontrado.\n");
+        return;
+    }
+    numUsuarios = 0;
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        Usuario usuario;
+
+        if (strstr(linha, "ID:") != NULL) {
+            sscanf(linha, "ID: %d", &usuario.id);
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, "Nome: %[^\n]", usuario.nome);
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, "Email: %[^\n]", usuario.email);
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, "Sexo: %[^\n]", usuario.sexo);
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, "Endereço: %[^\n]", usuario.endereco);
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, "Altura: %lf", &usuario.altura);
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, "Vacinado: %[^\n]", linha);
+
+            if (strcmp(linha, "Sim") == 0) {
+                usuario.vacina = 1;
+            } else {
+                usuario.vacina = 0;
+            }
+            usuarios[numUsuarios] = usuario;
+            numUsuarios++;
+        }
+    }
+    fclose(arquivo);
+    printf("Dados restaurados do backup com sucesso.\n");
+}
+
+void exibirMenu() {
+    char opcao;
+
+    while (true) {
+        printf("\nMenu de opções:\n");
+        printf("1. Adicionar usuário\n");
+        printf("2. Editar usuário\n");
+        printf("3. Excluir usuário\n");
+        printf("4. Buscar usuário pelo email\n");
+        printf("5. Imprimir todos os usuários cadastrados\n");
+        printf("6. Fazer backup dos usuários cadastrados\n");
+        printf("7. Restaurar dados do backup\n");
+        printf("8. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf(" %c", &opcao);
+
+        switch (opcao) {
+            case '1':
+                adicionarUsuario();
+                break;
+            case '2':
+                editarUsuario();
+                break;
+            case '3':
+                excluirUsuario();
+                break;
+            case '4':
+                buscarUsuario();
+                break;
+            case '5':
+                imprimirUsuarios();
+                break;
+            case '6':
+                fazerBackup();
+                break;
+            case '7':
+                restaurarBackup();
+                break;
+            case '8':
+                printf("Saindo do programa...\n");
+                return;
+            default:
+                printf("Opção inválida. Digite novamente.\n");
+        }
+    }
+}
+int main() {
+    exibirMenu();
+    return 0;
 }
