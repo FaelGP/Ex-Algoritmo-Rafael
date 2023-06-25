@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int calcularSomaDobro(int *a, int *b) {
+    *a = 2 * (*a);
+    *b = 2 * (*b);
+    return *a + *b;
+}
+int main() {
+    int valor1, valor2;
+
+    printf("Informe o primeiro valor: ");
+    scanf("%d", &valor1);
+
+    printf("Informe o segundo valor: ");
+    scanf("%d", &valor2);
+
+    int resultado = calcularSomaDobro(&valor1, &valor2);
+
+    printf("A soma do dobro dos valores e: %d\n", resultado);
+    printf("O valor atualizado de A e: %d\n", valor1);
+    printf("O valor atualizado de B e: %d\n", valor2);
+
+    return 0;
+}
