@@ -4,8 +4,8 @@
 typedef struct Restaurante {
     char nome[100];
     char endereco[100];
-    float precoMedio;
     char tipoComida[100];
+    float precoMedio;
     struct Restaurante* proximo;
 } Restaurante;
 
@@ -46,7 +46,6 @@ void listarRestaurantes(Restaurante* lista) {
         }
     }
 }
-
 int main() {
     Restaurante* listaRestaurantes = NULL;
 
