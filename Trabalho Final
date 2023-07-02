@@ -33,7 +33,7 @@ void adicionarProduto() {
     estoque[numProdutos] = produto;
     numProdutos++;
 
-    printf("Produto adicionado ao estoque.\n");
+    printf("Produto adicionado com sucesso.\n");
 }
 
 void gerarRelatorio() {
@@ -105,7 +105,7 @@ void removerProduto() {
 void exibirMenu() {
     printf(" !Mercado do seu Jao! \n");
     printf("1 - Cadastrar produto\n");
-    printf("2 - Consultar produtos\n");
+    printf("2 - Consultar produto\n");
     printf("3 - Imprimir relatorio de produtos\n");
     printf("4 - Remover produto\n");
     printf("0 - Sair\n");
@@ -137,10 +137,9 @@ int main() {
             case 0:
                 break;
             default:
-                printf("Opcao invalida. Tente novamente.\n");
+                printf("Opcao invalida.\n");
                 break;
         }
     } while (opcao != 0);
-
     return 0;
 }
